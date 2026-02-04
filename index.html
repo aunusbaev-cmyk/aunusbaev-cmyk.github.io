@@ -1,827 +1,292 @@
-```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>БМК Клининг — Химчистка и Аренда Оборудования</title>
-    <style>
-        /* Reset and Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f9fbfd;
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        
-        /* Header Styles */
-        header {
-            background: linear-gradient(135deg, #00a8e8, #0077be);
-            color: white;
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0, 120, 200, 0.2);
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 32px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .logo::before {
-            content: "✓";
-            font-size: 24px;
-            color: #fff;
-            background: #ffcc00;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 28px;
-        }
-        
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-size: 18px;
-            position: relative;
-            padding-bottom: 6px;
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #ffcc00;
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover {
-            color: #ffcc00;
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        /* Hero Section - Inspired by first image */
-        .hero {
-            background: linear-gradient(135deg, #00a8e8 0%, #0077be 100%);
-            color: white;
-            padding: 80px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: -100px;
-            right: -100px;
-            width: 400px;
-            height: 400px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            z-index: 0;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-        
-        .hero-text h1 {
-            font-size: 3.8rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-        
-        .hero-text h1 span {
-            color: #ffcc00;
-            text-shadow: 0 3px 6px rgba(255, 204, 0, 0.4);
-        }
-        
-        .hero-text p {
-            font-size: 1.4rem;
-            opacity: 0.95;
-            margin-bottom: 30px;
-            max-width: 500px;
-        }
-        
-        .highlight-box {
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 12px;
-            padding: 20px;
-            margin: 25px 0;
-            backdrop-filter: blur(10px);
-        }
-        
-        .highlight-box h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #ffcc00;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .highlight-box ul {
-            padding-left: 20px;
-        }
-        
-        .highlight-box li {
-            margin-bottom: 12px;
-            font-size: 1.1rem;
-        }
-        
-        .btn-primary {
-            display: inline-block;
-            background: #ffcc00;
-            color: #1a2530;
-            padding: 18px 45px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.3rem;
-            transition: all 0.4s cubic-bezier(0.17, 0.67, 0.88, 1.01);
-            border: 3px solid #ffcc00;
-            box-shadow: 0 8px 25px rgba(255, 204, 0, 0.4);
-        }
-        
-        .btn-primary:hover {
-            background: transparent;
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(255, 204, 0, 0.6);
-        }
-        
-        .hero-image {
-            position: relative;
-            display: flex;
-            justify-content: center;
-        }
-        
-        .sofa-img {
-            width: 100%;
-            max-width: 450px;
-            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.2));
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        
-        .sofa-img img {
-            width: 100%;
-            display: block;
-        }
-        
-        .equipment-img {
-            position: absolute;
-            bottom: -60px;
-            right: -40px;
-            width: 300px;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
-        }
-        
-        /* Services Section - Price List */
-        .services {
-            padding: 80px 0;
-            background: white;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .section-title h2 {
-            font-size: 2.8rem;
-            color: #0077be;
-            margin-bottom: 15px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .section-title h2::after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: #ffcc00;
-            border-radius: 2px;
-        }
-        
-        .section-title p {
-            color: #555;
-            font-size: 1.2rem;
-            max-width: 650px;
-            margin: 0 auto;
-        }
-        
-        .price-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-        
-        .price-card {
-            background: white;
-            border-radius: 16px;
-            padding: 35px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 120, 190, 0.1);
-            border: 2px solid #e0f0ff;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .price-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 6px;
-            background: linear-gradient(90deg, #00a8e8, #ffcc00);
-        }
-        
-        .price-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 120, 190, 0.2);
-            border-color: #00a8e8;
-        }
-        
-        .price-icon {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            color: #00a8e8;
-        }
-        
-        .price-card h3 {
-            font-size: 1.8rem;
-            color: #0077be;
-            margin-bottom: 15px;
-        }
-        
-        .price-value {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: #ffcc00;
-            margin: 15px 0;
-        }
-        
-        .price-card p {
-            color: #666;
-            margin-bottom: 20px;
-        }
-        
-        /* Equipment Rental Section */
-        .rental {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #f0f9ff, #e6f7ff);
-        }
-        
-        .rental-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-        
-        .rental-text h2 {
-            font-size: 2.5rem;
-            color: #0077be;
-            margin-bottom: 25px;
-        }
-        
-        .rental-list {
-            margin-top: 30px;
-        }
-        
-        .rental-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 0;
-            border-bottom: 1px dashed #cce6f5;
-        }
-        
-        .rental-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-        
-        .rental-item .name {
-            font-weight: 600;
-            font-size: 1.2rem;
-            color: #333;
-        }
-        
-        .rental-item .price {
-            font-weight: 700;
-            font-size: 1.4rem;
-            color: #ffcc00;
-        }
-        
-        .rental-images {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-        
-        .rental-img {
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0, 120, 190, 0.15);
-        }
-        
-        .rental-img img {
-            width: 100%;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-        
-        .rental-img:hover img {
-            transform: scale(1.05);
-        }
-        
-        /* Contact Section - Inspired by QR codes */
-        .contact {
-            padding: 80px 0;
-            background: white;
-        }
-        
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-        }
-        
-        .contact-info h2 {
-            font-size: 2.5rem;
-            color: #0077be;
-            margin-bottom: 30px;
-        }
-        
-        .qr-section {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-        
-        .qr-group {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        
-        .qr-code {
-            width: 120px;
-            height: 120px;
-            background: white;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            font-weight: bold;
-            color: #0077be;
-            box-shadow: 0 5px 15px rgba(0, 120, 190, 0.1);
-        }
-        
-        .qr-label {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #333;
-        }
-        
-        .phone-numbers {
-            margin-top: 30px;
-        }
-        
-        .phone-number {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #0077be;
-            margin-bottom: 15px;
-            display: block;
-        }
-        
-        .trust-badge {
-            background: linear-gradient(135deg, #00a8e8, #0077be);
-            color: white;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            margin-top: 30px;
-            font-size: 1.3rem;
-            font-weight: 700;
-        }
-        
-        .trust-badge::before {
-            content: "✓";
-            font-size: 24px;
-            margin-right: 10px;
-        }
-        
-        /* Footer */
-        footer {
-            background: #002b4d;
-            color: #e0f0ff;
-            padding: 50px 0 20px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-column h3 {
-            font-size: 1.5rem;
-            color: #ffcc00;
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-column h3::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: #ffcc00;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 15px;
-        }
-        
-        .footer-links a {
-            color: #a0c8e8;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .footer-links a:hover {
-            color: #ffcc00;
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #003a6a;
-            color: #7cb3d8;
-            font-size: 1rem;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .hero-text {
-                padding-bottom: 40px;
-            }
-            
-            .rental-content,
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .rental-images {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .hero-text h1 {
-                font-size: 2.8rem;
-            }
-            
-            .hero-text p {
-                font-size: 1.2rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2.3rem;
-            }
-            
-            .price-card {
-                padding: 25px 20px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hero-text h1 {
-                font-size: 2.2rem;
-            }
-            
-            .btn-primary {
-                padding: 15px 30px;
-                font-size: 1.1rem;
-            }
-            
-            .qr-group {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .contact-info h2 {
-                font-size: 2rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>БМК Клининг — Выездная химчистка</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f9f9f9;
+    }
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: bold;
+    }
+    section {
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #2c3e50;
+    }
+    .hero {
+      text-align: center;
+      background: #e3f2fd;
+      padding: 4rem 2rem;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 1.5rem;
+    }
+    .btn {
+      display: inline-block;
+      background: #2c3e50;
+      color: white;
+      padding: 10px 24px;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+    .features {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 2rem 0;
+      font-size: 1.1rem;
+    }
+    .services-grid, .rental-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .service-card, .rental-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .contact-info {
+      text-align: center;
+      margin: 2rem 0;
+    }
+    .contact-links a, .phones a {
+      display: block;
+      margin: 0.5rem 0;
+      color: #2c3e50;
+      text-decoration: none;
+    }
+    footer {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+     : 2rem;
+      margin-top: 3rem;
+    }
+    /* Форма */
+    #contact-form {
+      max-width: 500px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    #contact-form input,
+    #contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    #contact-form button {
+      width: 100%;
+      padding: 12px;
+      background: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #contact-form button:hover {
+      background: #1a252f;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 1rem 0;
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container header-content">
-            <div class="logo">БМК Клининг</div>
-            <ul class="nav-links">
-                <li><a href="#home">Главная</a></li>
-                <li><a href="#services">Услуги</a></li>
-                <li><a href="#rental">Аренда</a></li>
-                <li><a href="#contact">Контакты</a></li>
-            </ul>
-        </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container hero-content">
-            <div class="hero-text">
-                <h1>Выездная <span>профессиональная химчистка</span></h1>
-                <p>Срочная чистка диванов, кресел, ковров и салонов автомобилей прямо у вас дома или в офисе</p>
-                
-                <div class="highlight-box">
-                    <h3>✅ Что мы чистим:</h3>
-                    <ul>
-                        <li>Диваны и мягкая мебель</li>
-                        <li>Кресла и стулья</li>
-                        <li>Ковры и ковролин</li>
-                        <li>Салоны автомобилей</li>
-                        <li>И многое другое</li>
-                    </ul>
-                </div>
-                
-                <a href="#contact" class="btn-primary">Заказать выезд →</a>
-            </div>
-            <div class="hero-image">
-                <div class="sofa-img">
-                    <img src="https://placehold.co/450x300/ffcc00/0077be?text=Диван+до+и+после" alt="Диван до и после чистки">
-                </div>
-                <div class="equipment-img">
-                    <img src="https://placehold.co/300x200/0077be/ffffff?text=Химчистка+оборудование" alt="Оборудование для химчистки">
-                </div>
-            </div>
-        </div>
-    </section>
+  <header>
+    <strong>БМК Клининг</strong>
+    <nav>
+      <a href="#home">Главная</a>
+      <a href="#services">Услуги</a>
+      <a href="#rental">Аренда</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+  </header>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-title">
-                <h2>Наши услуги и цены</h2>
-                <p>Прозрачные цены без скрытых платежей. Все работы выполняются на месте с выездом специалиста</p>
-            </div>
-            <div class="price-grid">
-                <div class="price-card">
-                    <div class="price-icon">🛋️</div>
-                    <h3>Диваны</h3>
-                    <div class="price-value">от 2000 ₽</div>
-                    <p>Полная чистка сидений, спинок и подлокотников</p>
-                </div>
-                <div class="price-card">
-                    <div class="price-icon">🪑</div>
-                    <h3>Кресла</h3>
-                    <div class="price-value">от 900 ₽</div>
-                    <p>Глубокая очистка всех поверхностей</p>
-                </div>
-                <div class="price-card">
-                    <div class="price-icon">🧶</div>
-                    <h3>Ковры</h3>
-                    <div class="price-value">от 2500 ₽</div>
-                    <p>Удаление пятен, пыли и аллергенов</p>
-                </div>
-                <div class="price-card">
-                    <div class="price-icon">🚗</div>
-                    <h3>Салон автомобиля</h3>
-                    <div class="price-value">от 4000 ₽</div>
-                    <p>Чистка сидений, ковриков и панелей</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <section id="home" class="hero">
+    <h1>Выездная профессиональная химчистка</h1>
+    <p>Срочная чистка диванов, кресел, ковров и салонов автомобилей прямо у вас дома или в офисе</p>
+    <div class="features">
+      <div>✅ Диваны и мягкая мебель</div>
+      <div>✅ Кресла ия</div>
+      <div>✅ Ковры и ковролин</div>
+      <div>✅ Салоны автомобилей</div>
+    </div>
+    <a href="#contact" class="btn">Заказать выезд →</a>
+    <img src="https://placehold.co/450x300/ffcc00/0077be?text=Диван+до+и+после" alt="До и после">
+    <img src="https://placehold.co/3x200/0077be/ffffff?text=Химчистка+оборудование" alt="Оборудование">
+  </section>
 
-    <!-- Equipment Rental Section -->
-    <section id="rental" class="rental">
-        <div class="container">
-            <div class="section-title">
-                <h2>Аренда оборудования</h2>
-                <p>Профессиональные устройства для самостоятельной чистки — надежные, эффективные, готовые к работе</p>
-            </div>
-            <div class="rental-content">
-                <div class="rental-text">
-                    <h2>Аренда оборудования от БМК Клининг</h2>
-                    <p>Экономьте время и деньги — арендуйте профессиональное оборудование вместо покупки. Все устройства проверены, подготовлены и готовы к использованию.</p>
-                    
-                    <div class="rental-list">
-                        <div class="rental-item">
-                            <div class="name">Сухой пылесос</div>
-                            <div class="price">500 ₽/сут</div>
-                        </div>
-                        <div class="rental-item">
-                            <div class="name">Моющий пылесос</div>
-                            <div class="price">1300 ₽/сут</div>
-                        </div>
-                        <div class="rental-item">
-                            <div class="name">Аппарат для сушки</div>
-                            <div class="price">500 ₽/сут</div>
-                        </div>
-                        <div class="rental-item">
-                            <div class="name">Отпариватель</div>
-                            <div class="price">1200 ₽/сут</div>
-                        </div>
-                    </div>
-                    
-                    <a href="#contact" class="btn-primary" style="margin-top: 20px;">Забронировать оборудование →</a>
-                </div>
-                <div class="rental-images">
-                    <div class="rental-img">
-                        <img src="https://placehold.co/300x200/00a8e8/ffffff?text=Сухой+пылесос" alt="Сухой пылесос">
-                    </div>
-                    <div class="rental-img">
-                        <img src="https://placehold.co/300x200/ffcc00/002b4d?text=Моющий+пылесос" alt="Моющий пылесос">
-                    </div>
-                    <div class="rental-img">
-                        <img src="https://placehold.co/300x200/0077be/ffffff?text=Отпариватель" alt="Отпариватель">
-                    </div>
-                    <div class="rental-img">
-                        <img src="https://placehold.co/300x200/1a5276/ffffff?text=Аппарат+для+сушки" alt="Аппарат для сушки">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <section id="services">
+    <h2>Наши услуги и цены</h2>
+    <p style="text-align:center; margin-bottom:2rem;">Прозрачные цены без скрытых платежей. Все работы выполняются на месте с выездом специалиста</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div>🛋️</div>
+        <h3>Диваны</h3>
+        <p><strong>от 2000 ₽</strong></p>
+        <p>Полная чистка сидений, спинок и подлокотников</p>
+      </div>
+      <div class="service-card">
+        <div>🪑</div>
+        <h3>Кресла</h3>
+        <p><strong>от 900 ₽</strong></p>
+        <p>Глубокая очистка всех поверхностей</p>
+      </div>
+      <div class="service-card">
+        <div>🧶</div>
+        <h3>Ковры</h3>
+        <p><strong>от 2500 ₽</strong></p>
+        <p>Удаление пятен, пыли и аллергенов</p>
+      </div>
+      <div class="service-card">
+        <div>🚗</div>
+        <h3>Салон автомобиля</h3>
+        <p><strong>от 4000 ₽</strong></p>
+        <p>Чистка сидений, ковриков и панелей</p>
+      </div>
+    </div>
+  </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Свяжитесь с нами</h2>
-                <p>Оставьте заявку или позвоните — мы ответим в течение 15 минут</p>
-            </div>
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h2>Контактная информация</h2>
-                    
-                    <div class="qr-section">
-                        <div class="qr-group">
-                            <div class="qr-code">📱 WhatsApp</div>
-                            <div class="qr-label">Напишите нам в WhatsApp</div>
-                        </div>
-                        <div class="qr-group">
-                            <div class="qr-code">✈️ Telegram</div>
-                            <div class="qr-label">Связь через Telegram</div>
-                        </div>
-                        <div class="qr-group">
-                            <div class="qr-code">📘 ВКонтакте</div>
-                            <div class="qr-label">Наша группа ВК</div>
-                        </div>
-                    </div>
-                    
-                    <div class="phone-numbers">
-                        <a href="tel:+79053580004" class="phone-number">+7 (905) 358-00-04</a>
-                        <a href="tel:+79174858989" class="phone-number">+7 (917) 485-89-89</a>
-                    </div>
-                    
-                    <div class="trust-badge">
-                        Доверься профессионалам — качество гарантировано!
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <form>
-                        <input type="text" placeholder="Ваше имя" required style="width: 100%; padding: 16px; border: 2px solid #e0f0ff; border-radius: 12px; font-size: 16px; margin-bottom: 15px;">
-                        <input type="tel" placeholder="Телефон" required style="width: 100%; padding: 16px; border: 2px solid #e0f0ff; border-radius: 12px; font-size: 16px; margin-bottom: 15px;">
-                        <textarea placeholder="Что вам нужно? (диван, ковер, автомобиль, оборудование)" rows="4" required style="width: 100%; padding: 16px; border: 2px solid #e0f0ff; border-radius: 12px; font-size: 16px; margin-bottom: 20px;"></textarea>
-                        <button type="submit" class="btn-primary" style="width: 100%;">Отправить заявку</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+  <section id="rental">
+    <h2>Аренда оборудования</h2>
+    <p style="text-align:center; margin-bottom:1rem;">Профессиональные устройства для самостоятельной чистки — надежные, эффективные, готовые к работе</p>
+    <p style="text-align:center; margin-bottom:2rem;"><strong>Экономьте время и деньги</strong> — арендуйте профессиональное оборудование вместо покупки.</p>
+    
+    <div class="rental-grid">
+      <div class="rental-card">
+        <img src="https://placehold.co/300x200/00a8e8/ffffff?text=Сухой+пылесос" alt="Сухой пылесос">
+        <h3>Сухой пылесос</h3>
+        <p><strong>500 ₽/сут</strong></p>
+      </div>
+      <div class="rental-card">
+        <img src="https://placehold.co/300x200/ffcc00/002b4d?text=Моющий+пылесос" alt="Моющий пылесос">
+        <h3>Моющий пылесос</h3>
+        <p><strong>1300 ₽/сут</strong></p>
+      </div>
+      <div class="rental-card">
+        <img src="https://placehold.co/300x200/1a5276/ffffff?text=Аппарат+для+сушки" alt="Аппарат для сушки">
+        <h3>Аппarat для сушки</h3>
+        <p><strong>500 ₽/сут</strong></p>
+      </div>
+      <div class="rental-card">
+        <img src="https://placehold.co/300x200/0077be/ffffff?text=Отпариватель" alt="Отпариватель">
+        <h3>Отпариватель</h3>
+        <p><strong>1200 ₽/сут</strong></p>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:2rem;">
+      <a href="#contact" class="btn">Забронировать оборудование →</a>
+    </p>
+  </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>БМК Клининг</h3>
-                    <p>Профессиональная выездная химчистка и аренда оборудования с гарантией качества.</p>
-                </div>
-                <div class="footer-column">
-                    <h3>Услуги</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Химчистка диванов</a></li>
-                        <li><a href="#">Химчистка кресел</a></li>
-                        <li><a href="#">Химчистка ковров</a></li>
-                        <li><a href="#">Чистка салонов авто</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Аренда</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Сухой пылесос</a></li>
-                        <li><a href="#">Моющий пылесос</a></li>
-                        <li><a href="#">Отпариватель</a></li>
-                        <li><a href="#">Аппарат для сушки</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Контакты</h3>
-                    <ul class="footer-links">
-                        <li><a href="tel:+79053580004">+7 (905) 358-00-04</a></li>
-                        <li><a href="tel:+79174858989">+7 (917) 485-89-89</a></li>
-                        <li><a href="mailto:aunusbaev@gmail.com">aunusbaev@gmail.com</a></li>
-                        <li><a href="#">г.Баймак,  Баймакский район и г.Сибай </a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2026 БМК Клининг — Выездная профессиональная химчистка. Все права защищены.</p>
-            </div>
-        </div>
-    </footer>
+  <section id="contact">
+    <h2>Свяжитесь с нами</h2>
+    <p style="text-align:center; margin-bottom:1.5rem;">Оставьте заявку или позвоните — мы ответим в течение 15 минут</p>
+
+    <!-- ФОРМА ЗЯВКИ -->
+    <form id="contact-form">
+      <input type="text" id="user_name" placeholder="Ваше имя" required>
+      <input type="tel" id="user_phone" placeholder="Телефон (обязательно)" required>
+      <textarea id="message" placeholder="Что нужно почистить? (диван, ковёр, авто...)" rows="4"></textarea>
+      <button type="submit">Отправить заявку</button>
+    </form>
+
+    <div class="contact-info">
+      <div class="contact-links">
+        <a href="https://wa.me/79053580004" target="_blank">📱 WhatsApp — Напишите нам</a>
+        <a href="https://t.me/+79053580004" target="_blank">✈️ Telegram — Связь через Telegram</a>
+        <a href="https://vk.com/" target="_blank">📘 ВКонтакте — Наша группа</a>
+      </div>
+      <div class="phones">
+        <a href="tel:+79053580004+7 (905) 358-00-04</a>
+        <a href="tel:+79174858989">+7 (917) 485-89-89</a>
+      </div>
+      <p style="margin-top:1.5rem; font-weight:bold;">Доверься профессионалам — качество гарантировано!</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 БМК Клининг — Выездная профессиональная химчистка. Все права защищены.</p>
+    <p>г. Баймак, Баймакский район и г. Сибай</p>
+    <p><a href="mailto:aunusbaev@gmail.com">aunusbaev@gmail.com</a></p>
+  </footer>
+
+  <!-- EmailJS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+    // ✅ ВСЁ УЖЕ ВСТАВЛЕНО — ИСПОЛЬЗУЙ ЭТОТ ФАЙЛ КАК ЕСТЬ
+    const PUBLIC_KEY = "user_c03ojzDIDzD59bf";   // ← из твоего аккаунта (префикс user_ добавлен)
+    const SERVICE_ID = "service_3q1ndu8";
+    const TEMPLATE_ID = "template_ne207n3";
+
+    (function() {
+      emailjs.init(PUBLIC_KEY);
+    })();
+
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+        user_name: document.getElementById('user_name').value,
+        user_phone: document.getElementById('user_phone').value,
+        message: document.getElementById('message').value || "Не указано"
+      })
+      .then(function() {
+        alert('✅ Спасибо! Мы скоро свяжемся с вами.');
+        document.getElementById('contact-form').reset();
+      }, function(error) {
+        alert('❌ Ошибка отправки. Попробуйте WhatsApp или позвоните.');
+        console.error('EmailJS Error:', error);
+      });
+    });
+  </script>
+
 </body>
 </html>
-```
