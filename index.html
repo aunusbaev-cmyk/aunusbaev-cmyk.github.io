@@ -86,11 +86,23 @@
       text-align: center;
       margin: 2rem 0;
     }
-    .contact-links a, .phones a {
+    .contact-links a {
       display: block;
       margin: 0.5rem 0;
       color: #2c3e50;
       text-decoration: none;
+      font-size: 1.1rem;
+    }
+    .contact-links a:hover {
+      text-decoration: underline;
+    }
+    .phones a {
+      display: block;
+      margin: 0.5rem 0;
+      color: #2c3e50;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.2rem;
     }
     footer {
       background: #2c3e50;
@@ -231,7 +243,7 @@
     <h2>Свяжитесь с нами</h2>
     <p style="text-align:center; margin-bottom:1.5rem;">Оставьте заявку или позвоните — мы ответим в течение 15 минут</p>
 
-    <!-- ФОРМА ЗАЯВКИ -->
+    <!-- ФОРМА ЧЕРЕЗ EMAILJS -->
     <form id="contact-form">
       <input type="text" id="user_name" placeholder="Ваше имя" required>
       <input type="tel" id="user_phone" placeholder="Телефон (обязательно)" required>
@@ -242,8 +254,8 @@
     <div class="contact-info">
       <div class="contact-links">
         <a href="https://wa.me/79053580004" target="_blank">📱 WhatsApp — Напишите нам</a>
-        <a href="https://t.me/+79053580004" target="_blank">✈️ Telegram — Связь через Telegram</a>
-        <a href="https://vk.com/" target="_blank">📘 ВКонтакте — Наша группа</https://vk.com/bmkcleaning>
+        <a href="https://t.me/khimchistkabmk" target="_blank">✈️ Telegram — Группа «БМК Клининг»</a>
+        <a href="https://vk.com/bmkcleaning" target="_blank">📘 ВКонтакте — Официальная страница</a>
       </div>
       <div class="phones">
         <a href="tel:+79053580004">+7 (905) 358-00-04</a>
@@ -263,7 +275,7 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script type="text/javascript">
     // 🔑 Твои данные из EmailJS
-    const PUBLIC_KEY = "_c03ojzD_IDzD59bf";
+    const PUBLIC_KEY = "_c03ojzDIDzD59bf";
     const SERVICE_ID = "service_3q1ndu8";
     const TEMPLATE_ID = "template_ne207n3";
 
@@ -298,6 +310,3 @@
 
 </body>
 </html>
-
-
-
